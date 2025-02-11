@@ -113,7 +113,7 @@ class signupIndividualPage {
             });
     }
     static validationTCcheckbox(expectedMessage) {
-        cy.get('[data-test="terms-error"]').should('contain', expectedMessage);
+        cy.get('.Text--xs').eq(1).should('contain', expectedMessage);
     }
     static termsConditionsConsent() {
         cy.get("input[name='acceptedTAndCs']").click()
@@ -126,7 +126,9 @@ class signupIndividualPage {
         cy.get('.Button--fullWidth').eq(1).click();
     }
     static duplicateEmailErrorMessage(errormessage){
-        cy.get('[data-test="terms-error"]').should('contain', errormessage);
+        cy.get('.IconButton--responsive').eq(0).click();
+        cy.get('.IconButton--responsive').eq(0).click(); 
+        cy.get('.Field__HelperText').eq(0).should('contain', errormessage);
     }
     static validateAllIndividual(expectedErrors) {
         cy.get('.Field__HelperText') // Selects all error messages
@@ -136,6 +138,7 @@ class signupIndividualPage {
                     .should('be.visible') // Ensure it's displayed
                     .and('contain', expectedErrors[index].message); // Validate text
             });
+            cy.get(".Text--xs").eq(6).should('contain', "Must select an option");
     }
 
 }

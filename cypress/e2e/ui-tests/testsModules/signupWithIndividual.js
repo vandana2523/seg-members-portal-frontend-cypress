@@ -137,9 +137,9 @@ When('The user clicks on Continue without entering the required details', () => 
 Then('The user should see validation error messages for the missing fields', () => {
     const expectedErrorMessage = [
         { message: 'Must select a title' },
-        { message: "Must enter individual's first name" },
-        { message: "Must enter individual's surname" },
-        { message: "Must provide individual's email address" }
+        { message: "Must enter first name" },
+        { message: "Must enter surname" },
+        { message: "Must provide an email address" }
     ]
     signupIndividualPage.validateAllIndividual(expectedErrorMessage);
 })
@@ -159,5 +159,6 @@ When('I select the tems and condition and continue', () => {
 })
 
 Then('I should see a validation error message {string}', (errormessage) => {
+    
     signupIndividualPage.duplicateEmailErrorMessage(errormessage);
 })
